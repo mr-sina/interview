@@ -1,0 +1,120 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateOrderInput {
+  """costumer id of the order"""
+  costumer: String!
+
+  """prouducts ids of the order"""
+  products: [String!]!
+}
+
+input CreateProductInput {
+  """availability of the product"""
+  availability: Boolean!
+
+  """description of the product"""
+  description: String!
+
+  """name of the product"""
+  name: String!
+
+  """price of the product"""
+  price: Float!
+}
+
+input CreateUserInput {
+  """is user active ?"""
+  active: Boolean!
+
+  """email of the user"""
+  email: String!
+
+  """name of the user"""
+  name: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Mutation {
+  createOrder(input: CreateOrderInput!): OrderModel!
+  createProduct(input: CreateProductInput!): ProductModel!
+  createUser(input: CreateUserInput!): UserModel!
+  deleteOrder(id: String!): Boolean!
+  updateOrder(input: UpdateOrderInput!): OrderModel!
+  updateProduct(input: UpdateProductInput!): ProductModel!
+  updateUser(input: UpdateUserInput!): UserModel!
+}
+
+type OrderModel {
+  costumer: UserModel
+  created_at: DateTime!
+  id: String!
+  totalPrice: Float!
+  updated_at: DateTime!
+}
+
+type ProductModel {
+  availability: Boolean!
+  created_at: DateTime!
+  description: String!
+  id: String!
+  name: String!
+  price: Float!
+  updated_at: DateTime!
+}
+
+type Query {
+  getOrder(id: String!): OrderModel!
+  getOrders: [OrderModel!]!
+  getProduct(id: String!): ProductModel!
+  getProducts: [ProductModel!]!
+  getUser(id: String!): UserModel!
+  getUsers: [UserModel!]!
+}
+
+input UpdateOrderInput {
+  """costumer id of the order"""
+  costumer: String!
+  id: String!
+}
+
+input UpdateProductInput {
+  """availability of the product"""
+  availability: Boolean
+
+  """description of the product"""
+  description: String
+  id: String!
+
+  """name of the product"""
+  name: String
+
+  """price of the product"""
+  price: Float
+}
+
+input UpdateUserInput {
+  """is user active ?"""
+  active: Boolean
+
+  """email of the user"""
+  email: String
+  id: String!
+
+  """name of the user"""
+  name: String
+}
+
+type UserModel {
+  active: Boolean!
+  created_at: DateTime!
+  email: String!
+  id: String!
+  name: String!
+  updated_at: DateTime!
+}

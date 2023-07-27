@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  build:
+    build: .
+    container_name: interview
+    restart: unless-stopped
+    ports:
+      - '4000:8070'
+    depends_on:
+      - postgres
+    volumes:
+      - '/root/interview-public-data:/usr/src/interview-nodejs/build/public'
+
+  postgres:
+    image: postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: 1234
+    volumes:
+      - .docker-data/postgres:/var/lib/postgresql/data
+
